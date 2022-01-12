@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7DF084827441B0700794EF4 /* FailoverHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DF084727441B0700794EF4 /* FailoverHandler.swift */; };
 		F7E6681727364398004CD8A3 /* uber_failover_handlingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E6681627364398004CD8A3 /* uber_failover_handlingApp.swift */; };
 		F7E6681927364398004CD8A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E6681827364398004CD8A3 /* ContentView.swift */; };
 		F7E6681B27364399004CD8A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7E6681A27364399004CD8A3 /* Assets.xcassets */; };
@@ -16,11 +17,12 @@
 		F7E6682B27364577004CD8A3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E6682A27364577004CD8A3 /* NetworkError.swift */; };
 		F7E6682D273646C2004CD8A3 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E6682C273646C2004CD8A3 /* NetworkProvider.swift */; };
 		F7E6682F2736482A004CD8A3 /* NetworkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E6682E2736482A004CD8A3 /* NetworkEndpoint.swift */; };
-		F7E668312736487B004CD8A3 /* ExampleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E668302736487B004CD8A3 /* ExampleState.swift */; };
+		F7E668312736487B004CD8A3 /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E668302736487B004CD8A3 /* MockDataManager.swift */; };
 		F7E6683327365783004CD8A3 /* NetworkHealthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E6683227365783004CD8A3 /* NetworkHealthCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7DF084727441B0700794EF4 /* FailoverHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailoverHandler.swift; sourceTree = "<group>"; };
 		F7E6681327364398004CD8A3 /* uber-failover-handling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uber-failover-handling.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7E6681627364398004CD8A3 /* uber_failover_handlingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uber_failover_handlingApp.swift; sourceTree = "<group>"; };
 		F7E6681827364398004CD8A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,7 +34,7 @@
 		F7E6682A27364577004CD8A3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F7E6682C273646C2004CD8A3 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		F7E6682E2736482A004CD8A3 /* NetworkEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndpoint.swift; sourceTree = "<group>"; };
-		F7E668302736487B004CD8A3 /* ExampleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleState.swift; sourceTree = "<group>"; };
+		F7E668302736487B004CD8A3 /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
 		F7E6683227365783004CD8A3 /* NetworkHealthCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHealthCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +95,8 @@
 				F7E6683227365783004CD8A3 /* NetworkHealthCheck.swift */,
 				F7E6682C273646C2004CD8A3 /* NetworkProvider.swift */,
 				F7E668282736452B004CD8A3 /* NetworkClient.swift */,
-				F7E668302736487B004CD8A3 /* ExampleState.swift */,
+				F7DF084727441B0700794EF4 /* FailoverHandler.swift */,
+				F7E668302736487B004CD8A3 /* MockDataManager.swift */,
 			);
 			path = FailoverHandling;
 			sourceTree = "<group>";
@@ -169,12 +172,13 @@
 			files = (
 				F7E6682727364504004CD8A3 /* NetworkState.swift in Sources */,
 				F7E6681927364398004CD8A3 /* ContentView.swift in Sources */,
-				F7E668312736487B004CD8A3 /* ExampleState.swift in Sources */,
+				F7E668312736487B004CD8A3 /* MockDataManager.swift in Sources */,
 				F7E6683327365783004CD8A3 /* NetworkHealthCheck.swift in Sources */,
 				F7E6681727364398004CD8A3 /* uber_failover_handlingApp.swift in Sources */,
 				F7E6682F2736482A004CD8A3 /* NetworkEndpoint.swift in Sources */,
 				F7E668292736452B004CD8A3 /* NetworkClient.swift in Sources */,
 				F7E6682B27364577004CD8A3 /* NetworkError.swift in Sources */,
+				F7DF084827441B0700794EF4 /* FailoverHandler.swift in Sources */,
 				F7E6682D273646C2004CD8A3 /* NetworkProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

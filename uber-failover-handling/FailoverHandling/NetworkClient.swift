@@ -6,28 +6,37 @@
 //
 
 import Foundation
+import Combine
 
 protocol NetworkClient {
     
     var networkProvider: NetworkProvider { get }
     
-    func callToTheNetwork(completion: (_ response: String?, _ error: NetworkError?) -> Void)
+    var failoverHandler: FailoverHandler { get }
+    
+    func callToTheNetwork() -> AnyPublisher<String, NetworkError>
+    
     
 }
 
 class NetworkClientImpl: NetworkClient {
     
-    var networkProvider: NetworkProvider
+    var networkProvider: NetworkProvider = NetworkProviderImpl(networkHealthCheck: NetworkHealthCheckImpl())
     
-    var networkEndpoint: String = NetworkEndpoint.primary.rawValue
+    var failoverHandler: FailoverHandler
+    
+    var networkDomain: String = NetworkEndpoint.primary.rawValue
     
     var maxErrorCount: Int = 3
     
     private var timerRequestNewEndpoint = Timer()
     
-    init(networkProvider: NetworkProvider) {
-        self.networkProvider = networkProvider
-        self.networkProvider.delegate = self
+    init(failoverHandler: FailoverHandler) {
+        self.failoverHandler = failoverHandler
+        self.failoverHandler.onSwitchDomain = { [weak self] domain in
+            guard let self = self else { return }
+            self.networkDomain = domain
+        }
     }
     
     func callToTheNetwork(completion: (_ response: String?, _ error: NetworkError?) -> Void) {
@@ -44,7 +53,25 @@ class NetworkClientImpl: NetworkClient {
         
     }
     
+    func callToTheNetwork() -> AnyPublisher<String, NetworkError> {
+        print("Call to the network")
+        
+        return callTheNetworkWithRetries(retries: maxErrorCount)
+            .handleEvents(receiveOutput: { [unowned self] _ in
+                self.timerRequestNewEndpoint.invalidate()
+            }, receiveCompletion: { [unowned self] _ in
+                self.timerRequestNewEndpoint.invalidate()
+            }).eraseToAnyPublisher()
+        
+    }
+    
+    private func callTheNetworkWithRetries(retries: Int) -> AnyPublisher<String, NetworkError> {
+        return Empty(completeImmediately: true).eraseToAnyPublisher()
+    }
+    
     private func callToTheNetworkWithRetries(retries: Int, completion: (_ response: String?, _ error: NetworkError?) -> Void) {
+        
+        print("Current endpoint is using \(networkDomain)")
         
         if retries == 0 {
             
@@ -89,7 +116,7 @@ extension NetworkClientImpl: NetworkProviderDelegate {
     
     func switchToNewNetwork(endpoint: String) {
         
-        networkEndpoint = endpoint
+        networkDomain = endpoint
         
     }
     
